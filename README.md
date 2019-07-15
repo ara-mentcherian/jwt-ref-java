@@ -25,11 +25,11 @@ application-03.v0, application-03.v1, application-03.v2, application-03.v3
 application-04.v0, application-04.v1, application-04.v2, application-04.v3   
 
 ### References
-*[RFC7519 JSON Web Token (JWT)](https://tools.ietf.org/html/rfc7519)
-*[RFC7515 JSON Web Signature (JWS)](https://tools.ietf.org/html/rfc7515)
-*[RFC7516 JSON Web Encryption (JWE)](https://tools.ietf.org/html/rfc7516)
-*[RFC7517 JSON Web Key (JWK)](https://tools.ietf.org/html/rfc7517)
-*[RFC7518 JSON Web Algorithms (JWA)](https://tools.ietf.org/html/rfc7518)
-*[Java JWT: JSON Web Token for Java and Android](https://github.com/jwtk/jjwt)
-*[REST Security with JWT using Java and Spring Security](https://www.toptal.com/java/rest-security-with-jwt-spring-security-and-java)
-*[RESTFul Service with Spring Boot and Filter Based Security](https://www.codeproject.com/Articles/1267678/RESTFul-Service-with-Spring-Boot-and-Filter-Based)
+* [RFC7519 JSON Web Token (JWT)](https://tools.ietf.org/html/rfc7519)
+* [RFC7515 JSON Web Signature (JWS)](https://tools.ietf.org/html/rfc7515)
+* [RFC7516 JSON Web Encryption (JWE)](https://tools.ietf.org/html/rfc7516)
+* [RFC7517 JSON Web Key (JWK)](https://tools.ietf.org/html/rfc7517)
+* [RFC7518 JSON Web Algorithms (JWA)](https://tools.ietf.org/html/rfc7518)
+* [Java JWT: JSON Web Token for Java and Android](https://github.com/jwtk/jjwt)
+* [REST Security with JWT using Java and Spring Security](https://www.toptal.com/java/rest-security-with-jwt-spring-security-and-java)
+* [RESTFul Service with Spring Boot and Filter Based Security](https://www.codeproject.com/Articles/1267678/RESTFul-Service-with-Spring-Boot-and-Filter-Based)
