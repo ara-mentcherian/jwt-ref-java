@@ -40,7 +40,7 @@ public class App02Controller {
 
 	private static String KEY_ID = "application-02.v1";
 	private String PUB_KEYSTORE_URL = "http://localhost:8080/jwkkeystore/application-02";
-	private String SECURE_APP_URL = "http://localhost:8080/mysecureapi/";
+	private String SECURE_APP_URL = "http://localhost:8080/mysecureapi2/";
 
 	@RequestMapping(value = "/app02/{name}", method = RequestMethod.GET)
 	public HttpEntity<String> get(@PathVariable("name") String name) {
