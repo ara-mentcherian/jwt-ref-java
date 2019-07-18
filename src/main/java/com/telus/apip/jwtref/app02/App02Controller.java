@@ -81,7 +81,9 @@ public class App02Controller {
 			token = Jwts.builder()
 					.setHeaderParam("jku", PUB_KEYSTORE_URL)
 					.setHeaderParam("kid", KEY_ID)
-					.setIssuer("application-02").setSubject("bill.smith@telus.com").setAudience("MySecureApi")
+					.setIssuer("application-02")
+					.setSubject("bill.smith@telus.com")
+					.setAudience("MySecureApi")
 					.setExpiration(expiration) // a java.util.Date
 					.setNotBefore(new Date()) // a java.util.Date
 					.setIssuedAt(new Date()) // for example, now

@@ -1,16 +1,15 @@
 # Getting Started
 
 ### How to use this demo
-This app contains a dummy API accessed from http://localhost:8080/app02/{name} which responds with a "hello {name}".
+This is a self-contained demo application showing the creation and validation of JWT signed tokens.  Upon startup the application will generate four sets of RSA key pairs and make available the public keys as a JWKSet through the /jwkkeystore/{id} URL where {id} represents the JWS signer id.
 
-The /app02 will create a JWT token and pass it to the /mysecureapi.  The mysecureapi checks for and requires a JWT Bearer token in the authorization header.
+The URL /app02/{name} does not have any security and can be called from a browser.  When invoking this URL it will in turn call the /mysecureapi2/{name} URL which is secured with a JWT Bearer token via a Spring Filter.
 
-The app will also stand up a URL to manage the public keys of the JWT signers at /jwkkeystore.
+The controller for /app02 will generate a JWS token using the RSA KeyPair for application-02.  It will populate the JKU header with the URL for the JWK Key Set.
 
 com/telus/apip/jwtref/app02/App02Controller - app called by the user
-com/telus/apip/jwtref/mysecureapi/MySecureApiController.java - app called by App02Controller and secured by JWT Bearer token
+com/telus/apip/jwtref/mysecureapi/MySecureApiController2.java - app called by App02Controller and secured by JWT Bearer token
 com/telus/apip/jwtref/keystore/JwkKeyStoreController - Access the public keys for the JWS signers
-
 
 KeySets are identified by the following App ID...
 application-01
