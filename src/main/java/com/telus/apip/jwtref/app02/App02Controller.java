@@ -19,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
@@ -35,22 +36,19 @@ public class App02Controller {
 	@Autowired
 	KeyStoreService kss;
 
-	@Autowired
-	private Environment env;
-
 	private static String KEY_ID = "application-02.v1";
 	private String PUB_KEYSTORE_URL = "http://localhost:8080/jwkkeystore/application-02";
 	private String SECURE_APP_URL = "http://localhost:8080/mysecureapi2/";
 
 	@RequestMapping(value = "/app02/{name}", method = RequestMethod.GET)
-	public HttpEntity<String> get(@PathVariable("name") String name) {
+	public HttpEntity<String> get(@PathVariable("name") String name, @RequestParam(required=false) String iss, @RequestParam(required=false) String aud) {
 
 		try {
 			RestTemplate restTemplate = new RestTemplate();
 
 			HttpHeaders headers = new HttpHeaders();
 			headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-			headers.setBearerAuth(generateJwkToken());
+			headers.setBearerAuth(generateJwkToken(iss, aud));
 			HttpEntity<String> entity = new HttpEntity<String>(null, headers);
 			
 			logger.debug(entity.toString());
@@ -69,7 +67,7 @@ public class App02Controller {
 		}
 	}
 
-	private String generateJwkToken() throws Exception {
+	private String generateJwkToken(String iss, String aud) throws Exception {
 		String token = "";
 		KeyPair kp = kss.getKeyPair(KEY_ID);
 		if (kp != null) {
@@ -81,9 +79,9 @@ public class App02Controller {
 			token = Jwts.builder()
 					.setHeaderParam("jku", PUB_KEYSTORE_URL)
 					.setHeaderParam("kid", KEY_ID)
-					.setIssuer("application-02")
+					.setIssuer((iss != null) ? iss:"application-02")
 					.setSubject("bill.smith@telus.com")
-					.setAudience("MySecureApi")
+					.setAudience((aud != null) ? aud:"MySecureApi")
 					.setExpiration(expiration) // a java.util.Date
 					.setNotBefore(new Date()) // a java.util.Date
 					.setIssuedAt(new Date()) // for example, now

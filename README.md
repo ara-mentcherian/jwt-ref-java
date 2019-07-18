@@ -7,6 +7,8 @@ The URL /app02/{name} does not have any security and can be called from a browse
 
 The controller for /app02 will generate a JWS token using the RSA KeyPair for application-02.  It will populate the JKU header with the URL for the JWK Key Set.
 
+You can use a different audience and issuer to generate 401 errors by changing the values in the query parameters: http://localhost:8080/app02/bill?iss=application-02&aud=MySecureApi
+
 com/telus/apip/jwtref/app02/App02Controller - app called by the user
 com/telus/apip/jwtref/mysecureapi/MySecureApiController2.java - app called by App02Controller and secured by JWT Bearer token
 com/telus/apip/jwtref/keystore/JwkKeyStoreController - Access the public keys for the JWS signers

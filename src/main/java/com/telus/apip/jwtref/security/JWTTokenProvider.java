@@ -42,6 +42,8 @@ public class JWTTokenProvider {
 			Jws<Claims> jws = Jwts.parser()
 					.setSigningKeyResolver(keyResolver)
 					.setAllowedClockSkewSeconds(5)
+					.requireAudience("MySecureApi")
+					.requireIssuer("application-02")
 					.parseClaimsJws(token);
 			
 			logger.debug("MySecureApiController:JWS Claim::" + jws.getBody().toString());

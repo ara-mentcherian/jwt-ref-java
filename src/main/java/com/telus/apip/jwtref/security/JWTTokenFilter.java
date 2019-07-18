@@ -37,6 +37,7 @@ public class JWTTokenFilter extends GenericFilterBean {
 			throws IOException, ServletException {
 
 		String token = jwtTokenProvider.extractToken((HttpServletRequest) request);
+		
 		if (token != null) {
 			Jws<Claims> jws;
 			try {
@@ -46,16 +47,16 @@ public class JWTTokenFilter extends GenericFilterBean {
 				request.setAttribute("jwt_subject", jws.getBody().getSubject());
 				request.setAttribute("jwt_id", jws.getBody().getId());
 				request.setAttribute("jwt_issuer", jws.getBody().getIssuer());
+				chain.doFilter(request, response);
+				
 			} catch (Exception e) {
-				logger.error("Error in validating JWT Toke [" + token + "]", e);
+				logger.error("Error in validating JWT Token [" + token + "]", e);
 				((HttpServletResponse)response).sendError(HttpServletResponse.SC_UNAUTHORIZED, "Failed to validate JWT Token");
 			}
 		} else {
 			logger.error("Authentication token missing");
 			((HttpServletResponse)response).sendError(HttpServletResponse.SC_UNAUTHORIZED, "Authentication token missing");
 		}
-		
-		chain.doFilter(request, response);
 	}
 
 }
